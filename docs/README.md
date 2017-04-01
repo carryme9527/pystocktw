@@ -32,11 +32,23 @@ payload = {
 
 GET
 
+https://www.stockdog.com.tw/stockdog/index.php
+
+``` json
+params = {
+    'sid', # 股票代碼
+    'p': 7,
+    'm': 1,
+}
+```
+
+GET
+
 https://www.stockdog.com.tw/stockdog/ajax.php
 
 ``` json
 params = {
-  'Atype': '0892bb58f7ceeebe551733eab5833d687f',
+  'Atype', # Atype in function ajax_table from previous html
   'type': 0, # 0/1/2
   'sid', # 股票代碼
 }
