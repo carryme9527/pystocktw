@@ -56,7 +56,7 @@ params = {
 
 - 用 Chrome 的 headers
 - Cookie
-  - G_AUTHUSER_H=0
-  - G_ENABLED_IDPS=google
+  - G\_AUTHUSER\_H=0
+  - G\_ENABLED\_IDPS=google
   - SDSSESSID
 
