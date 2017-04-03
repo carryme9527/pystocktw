@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-def stockdog_get_distribution_atype(sdssessid):
+def stockdog_equity_distribution_atype(sdssessid):
     return {
         'url': 'https://www.stockdog.com.tw/stockdog/index.php',
         'params': {
@@ -14,7 +14,7 @@ def stockdog_get_distribution_atype(sdssessid):
         'encoding': 'UTF-8',
     }
 
-def stockdog_get_distribution(sdssessid, atype, sid, _type):
+def stockdog_equity_distribution(sdssessid, atype, sid, _type):
     return {
         'url': 'https://www.stockdog.com.tw/stockdog/ajax.php',
         'params': {
@@ -28,7 +28,7 @@ def stockdog_get_distribution(sdssessid, atype, sid, _type):
         'encoding': 'UTF-8',
     }
 
-def twse_get_stock_code_hidden_inputs(stock_type):
+def twse_stock_code_hidden_inputs(stock_type):
     return {
         'url': 'http://mops.twse.com.tw/mops/web/ajax_t51sb01',
         'data': {
@@ -40,7 +40,7 @@ def twse_get_stock_code_hidden_inputs(stock_type):
         },
     }
 
-def twse_get_stock_code(data):
+def twse_stock_code(data):
     return {
         'url': 'http://mops.twse.com.tw/server-java/t105sb02',
         'data': data,

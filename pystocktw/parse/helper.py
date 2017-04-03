@@ -3,21 +3,21 @@
 import re
 from BeautifulSoup import BeautifulSoup
 
-def twse_get_stock_code_hidden_inputs(response):
+def twse_stock_code_hidden_inputs(response):
     soup = BeautifulSoup(response)
     inputs = soup.findAll('input', {'type': 'hidden'})
     fields = [x['name'] for x in inputs[-3:]]
     values = [x['value'] for x in inputs[-3:]]
     return dict(zip(fields, values))
 
-def stockdog_get_distribution_atype(response):
+def stockdog_equity_distribution_atype(response):
     ajax_table_index = response.find('ajax_table')
     index = response[ajax_table_index:].find('Atype') + ajax_table_index
     source = response[index: index+50]
     atype = re.search("'([^']+)'", source).group(1)
     return atype
 
-def stockdog_get_distribution(response):
+def stockdog_equity_distribution(response):
     soup = BeautifulSoup(response)
 
     def get_headers(thead):
