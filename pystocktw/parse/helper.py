@@ -1,7 +1,12 @@
 # -*- coding: UTF-8 -*-
 
 import re
+from HTMLParser import HTMLParser
 from BeautifulSoup import BeautifulSoup
+
+def html_unescape(text):
+    h = HTMLParser()
+    return h.unescape(text)
 
 def twse_stock_code_hidden_inputs(response):
     soup = BeautifulSoup(response)
@@ -35,3 +40,20 @@ def stockdog_equity_distribution(response):
     headers = get_headers(soup.find('thead'))
     data = get_data(soup.find('tbody'))
     return headers, data
+
+def twse_equity_distribution(response):
+    table = BeautifulSoup(response).findAll('table')[-2]
+
+    def get_headers(table):
+        return [x.text for x in table.find('tr', { 'class': 'bwl9' }).findAll('td')]
+
+    def get_data(table):
+        data = []
+        for row in table.findAll('tr')[1:-1]:
+            data.append([x.text for x in row.findAll('td')])
+        return data
+
+    headers = get_headers(table)
+    data = get_data(table)
+    return headers, data
+

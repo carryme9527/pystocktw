@@ -10,7 +10,7 @@ def setup():
 def teardown():
     print "TEAR DOWN!"
 
-def test_stockdog():
+def test_stockdog_equity_distribution():
     sdssessid = ''
 
     req_config = setting.stockdog_equity_distribution_atype(sdssessid)
@@ -36,3 +36,10 @@ def test_twse_code_otc():
 
     req_config = setting.twse_stock_code(payload)
     response = util.post(**req_config)
+
+def test_twse_equity_distribution():
+    req_config = setting.twse_equity_distribution_for_cache()
+    response = util.get(**req_config)
+    req_config = setting.twse_equity_distribution('20170331', 2330)
+    response = util.post(**req_config)
+    helper.twse_equity_distribution(response)

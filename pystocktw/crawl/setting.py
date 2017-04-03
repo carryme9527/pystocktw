@@ -45,3 +45,19 @@ def twse_stock_code(data):
         'url': 'http://mops.twse.com.tw/server-java/t105sb02',
         'data': data,
     }
+
+def twse_equity_distribution_for_cache():
+    return {
+        'url': 'http://www.tdcc.com.tw/smWeb/QryStock.jsp',
+    }
+
+def twse_equity_distribution(sca_date, sid):
+    return {
+        'url': 'http://www.tdcc.com.tw/smWeb/QryStock.jsp',
+        'data': {
+            'SCA_DATE': sca_date,
+            'StockNo': sid,
+            'SqlMethod': 'StockNo',
+            'sub': u'查詢'.encode('big5'),
+        },
+    }
