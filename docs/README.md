@@ -49,7 +49,7 @@ https://www.stockdog.com.tw/stockdog/ajax.php
 ``` json
 params = {
   'Atype', # Atype in function ajax_table from previous html
-  'type': 0, # 0/1/2
+  'type': 0, # 1/2/3
   'sid', # 股票代碼
 }
 ```
