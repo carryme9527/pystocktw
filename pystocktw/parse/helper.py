@@ -57,3 +57,9 @@ def twse_equity_distribution(response):
     data = get_data(table)
     return headers, data
 
+def twse_warrant_info_hidden_inputs(response):
+    soup = BeautifulSoup(response)
+    inputs = soup.findAll('input', {'type': 'hidden'})
+    fields = [x['name'] for x in inputs[-3:]]
+    values = [x['value'] for x in inputs[-3:]]
+    return dict(zip(fields, values))

@@ -61,3 +61,21 @@ def twse_equity_distribution(sca_date, sid):
             'sub': u'查詢'.encode('big5'),
         },
     }
+
+def twse_warrant_info_hidden_inputs():
+    return {
+        'url': 'http://mops.twse.com.tw/mops/web/ajax_t90sb01',
+        'data': {
+            'encodeURIComponent': 1,
+            'step': 1,
+            'firstin': 1,
+            'off': 1,
+            'r': 1,
+        },
+    }
+
+def twse_warrant_info(data):
+    return {
+        'url': 'http://mops.twse.com.tw/server-java/t105sb02',
+        'data': data,
+    }

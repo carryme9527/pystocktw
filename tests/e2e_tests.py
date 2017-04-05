@@ -12,7 +12,6 @@ def teardown():
 
 def test_stockdog_equity_distribution():
     sdssessid = ''
-
     req_config = setting.stockdog_equity_distribution_atype(sdssessid)
     response = util.get(**req_config)
     atype = helper.stockdog_equity_distribution_atype(response)
@@ -43,3 +42,11 @@ def test_twse_equity_distribution():
     req_config = setting.twse_equity_distribution('20170331', 2330)
     response = util.post(**req_config)
     helper.twse_equity_distribution(response)
+
+def test_twse_warrant_info():
+    req_config = setting.twse_warrant_info_hidden_inputs()
+    response = util.post(**req_config)
+    payload = helper.twse_warrant_info_hidden_inputs(response)
+
+    req_config = setting.twse_warrant_info(payload)
+    response = util.post(**req_config)
