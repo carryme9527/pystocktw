@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-def stockdog_equity_distribution_atype(sdssessid):
+def stockdog_equity_distribution_atype(sdssessid, chrome_version):
     return {
         'url': 'https://www.stockdog.com.tw/stockdog/index.php',
         'params': {
@@ -10,6 +10,7 @@ def stockdog_equity_distribution_atype(sdssessid):
         },
         'headers': {
             'Cookie': 'G_AUTHUSER_H=0; G_ENABLED_IDPS=google; SDSSESSID=%s;' % sdssessid,
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%s Safari/537.36' % chrome_version,
         },
         'encoding': 'UTF-8',
     }
