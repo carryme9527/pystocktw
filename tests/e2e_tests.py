@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 from nose.tools import *
+from sessionid import stockdog_session_id
 from pystocktw.crawl import util, setting
 from pystocktw.parse import helper
 
@@ -11,12 +12,11 @@ def teardown():
     print "TEAR DOWN!"
 
 def test_stockdog_equity_distribution():
-    sdssessid = ''
-    req_config = setting.stockdog_equity_distribution_atype(sdssessid)
+    req_config = setting.stockdog_equity_distribution_atype(stockdog_session_id)
     response = util.get(**req_config)
     atype = helper.stockdog_equity_distribution_atype(response)
 
-    req_config = setting.stockdog_equity_distribution(sdssessid, atype, 2330, 2)
+    req_config = setting.stockdog_equity_distribution(stockdog_session_id, atype, 2330, 2)
     response = util.get(**req_config)
     headers, data = helper.stockdog_equity_distribution(response)
 
