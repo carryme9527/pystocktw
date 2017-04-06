@@ -21,7 +21,7 @@ def stockdog_equity_distribution(sdssessid, atype, sid, _type):
         'params': {
             'Atype': atype,
             'sid': sid,
-            'type': _type,
+            'type': _type, # 1, 2, 3
         },
         'headers': {
             'Cookie': 'G_AUTHUSER_H=0; G_ENABLED_IDPS=google; SDSSESSID=%s;' % sdssessid,
@@ -36,7 +36,7 @@ def twse_stock_code_hidden_inputs(stock_type):
             'encodeURIComponent': 1,
             'step': 1,
             'firstin': 1,
-            'typek': stock_type,
+            'typek': stock_type, # sii, otc
             'code': '',
         },
     }
@@ -63,7 +63,7 @@ def twse_equity_distribution(sca_date, sid):
         },
     }
 
-def twse_warrant_info_hidden_inputs():
+def twse_warrant_info_hidden_inputs(r):
     return {
         'url': 'http://mops.twse.com.tw/mops/web/ajax_t90sb01',
         'data': {
@@ -71,7 +71,7 @@ def twse_warrant_info_hidden_inputs():
             'step': 1,
             'firstin': 1,
             'off': 1,
-            'r': 1,
+            'r': r, # 1, 2
         },
     }
 
