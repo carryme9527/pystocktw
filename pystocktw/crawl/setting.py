@@ -56,7 +56,7 @@ def twse_equity_distribution(sca_date, sid):
     return {
         'url': 'http://www.tdcc.com.tw/smWeb/QryStock.jsp',
         'data': {
-            'SCA_DATE': sca_date,
+            'SCA_DATE': sca_date, # 2016/04/01
             'StockNo': sid,
             'SqlMethod': 'StockNo',
             'sub': u'查詢'.encode('big5'),

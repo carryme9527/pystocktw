@@ -34,6 +34,11 @@ def test_twse_code():
 def test_twse_equity_distribution():
     req_config = setting.twse_equity_distribution_for_cache()
     response = util.get(**req_config)
+
+    req_config = setting.twse_equity_distribution('20160401', 2330)
+    response = util.post(**req_config)
+    helper.twse_equity_distribution(response)
+
     req_config = setting.twse_equity_distribution('20170331', 2330)
     response = util.post(**req_config)
     helper.twse_equity_distribution(response)
