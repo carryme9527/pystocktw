@@ -101,3 +101,14 @@ def twse_warrant_cancel():
         'url': 'http://mops.twse.com.tw/mops/web/t132sb11',
         'encoding': 'UTF-8',
     }
+
+def twse_warrant_institution(qdate, select2):
+    return {
+        'url': 'http://www.twse.com.tw/ch/trading/fund/T86/T86.php',
+        'data': {
+            'download': 'csv',
+            'qdate': qdate, # YYY/MM/DD
+            'select2': select2, # 0999, 0999P, 0999C, 0999B, 0999X, 0999Y
+            'sorting': 'by_issue',
+        },
+    }

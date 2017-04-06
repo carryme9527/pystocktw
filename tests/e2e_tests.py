@@ -21,6 +21,7 @@ def test_stockdog_equity_distribution():
         response = util.get(**req_config)
         headers, data = helper.stockdog_equity_distribution(response)
 
+# csv
 def test_twse_code():
     for typek in ['sii', 'otc']:
         req_config = setting.twse_stock_code_hidden_inputs('sii')
@@ -37,6 +38,7 @@ def test_twse_equity_distribution():
     response = util.post(**req_config)
     helper.twse_equity_distribution(response)
 
+# csv
 def test_twse_warrant_info():
     for r in [1, 2]:
         req_config = setting.twse_warrant_info_hidden_inputs(r)
@@ -64,3 +66,9 @@ def test_twse_warrant_cancel():
     req_config = setting.twse_warrant_cancel()
     response = util.get(**req_config)
     headers, data = helper.twse_warrant_cancel(response)
+
+# csv
+def test_twse_warrant_institution():
+    for select2 in ['0999','0999P', '0999C', '0999B', '0999X', '0999Y']:
+        req_config = setting.twse_warrant_institution('106/04/05', select2)
+        response = util.post(**req_config)
