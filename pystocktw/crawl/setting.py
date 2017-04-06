@@ -80,3 +80,18 @@ def twse_warrant_info(data):
         'url': 'http://mops.twse.com.tw/server-java/t105sb02',
         'data': data,
     }
+
+def twse_warrant_info_expired_hidden_inputs(r, sd, ed):
+    return {
+        'url': 'http://mops.twse.com.tw/mops/web/ajax_t90sb01',
+        'data': {
+            'encodeURIComponent': 1,
+            'step': 1,
+            'firstin': 1,
+            'off': 1,
+            'r': r, # 1, 2
+            'rc': 0,
+            'start_date': sd, # 8903 (r=1) 9301 (r=2)
+            'end_date': ed, # current month
+        }
+    }

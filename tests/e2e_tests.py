@@ -45,3 +45,17 @@ def test_twse_warrant_info():
 
         req_config = setting.twse_warrant_info(payload)
         response = util.post(**req_config)
+
+    req_config = setting.twse_warrant_info_expired_hidden_inputs(1, '8903', '8903')
+    response = util.post(**req_config)
+    payload = helper.twse_warrant_info_hidden_inputs(response)
+
+    req_config = setting.twse_warrant_info(payload)
+    response = util.post(**req_config)
+
+    req_config = setting.twse_warrant_info_expired_hidden_inputs(2, '9301', '9301')
+    response = util.post(**req_config)
+    payload = helper.twse_warrant_info_hidden_inputs(response)
+
+    req_config = setting.twse_warrant_info(payload)
+    response = util.post(**req_config)
