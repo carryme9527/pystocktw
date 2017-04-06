@@ -59,3 +59,8 @@ def test_twse_warrant_info():
 
     req_config = setting.twse_warrant_info(payload)
     response = util.post(**req_config)
+
+def test_twse_warrant_cancel():
+    req_config = setting.twse_warrant_cancel()
+    response = util.get(**req_config)
+    headers, data = helper.twse_warrant_cancel(response)

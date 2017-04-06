@@ -93,5 +93,11 @@ def twse_warrant_info_expired_hidden_inputs(r, sd, ed):
             'rc': 0,
             'start_date': sd, # 8903 (r=1) 9301 (r=2)
             'end_date': ed, # current month
-        }
+        },
+    }
+
+def twse_warrant_cancel():
+    return {
+        'url': 'http://mops.twse.com.tw/mops/web/t132sb11',
+        'encoding': 'UTF-8',
     }
