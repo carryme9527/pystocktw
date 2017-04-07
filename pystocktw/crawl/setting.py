@@ -107,7 +107,7 @@ def twse_warrant_institution(qdate, select2):
         'url': 'http://www.twse.com.tw/ch/trading/fund/T86/T86.php',
         'data': {
             'download': 'csv',
-            'qdate': qdate, # YYY/MM/DD
+            'qdate': qdate, # 101/05/02
             'select2': select2, # 0999, 0999P, 0999C, 0999B, 0999X, 0999Y
             'sorting': 'by_issue',
         },

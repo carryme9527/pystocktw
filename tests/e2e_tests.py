@@ -75,5 +75,8 @@ def test_twse_warrant_cancel():
 # csv
 def test_twse_warrant_institution():
     for select2 in ['0999','0999P', '0999C', '0999B', '0999X', '0999Y']:
+        req_config = setting.twse_warrant_institution('101/05/02', select2)
+        response = util.post(**req_config)
+
         req_config = setting.twse_warrant_institution('106/04/05', select2)
         response = util.post(**req_config)
