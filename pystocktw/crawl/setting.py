@@ -102,7 +102,7 @@ def twse_warrant_cancel():
         'encoding': 'UTF-8',
     }
 
-def twse_warrant_institution(qdate, select2):
+def twse_warrant_listed_institution(qdate, select2):
     return {
         'url': 'http://www.twse.com.tw/ch/trading/fund/T86/T86.php',
         'data': {

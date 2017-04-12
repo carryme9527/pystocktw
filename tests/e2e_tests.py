@@ -73,10 +73,10 @@ def test_twse_warrant_cancel():
     headers, data = helper.twse_warrant_cancel(response)
 
 # csv
-def test_twse_warrant_institution():
+def test_twse_warrant_listed_institution():
     for select2 in ['0999','0999P', '0999C', '0999B', '0999X', '0999Y']:
-        req_config = setting.twse_warrant_institution('101/05/02', select2)
+        req_config = setting.twse_warrant_listed_institution('101/05/02', select2)
         response = util.post(**req_config)
 
-        req_config = setting.twse_warrant_institution('106/04/05', select2)
+        req_config = setting.twse_warrant_listed_institution('106/04/05', select2)
         response = util.post(**req_config)
