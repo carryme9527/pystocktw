@@ -41,7 +41,7 @@ def stockdog_equity_distribution(response):
     data = get_data(soup.find('tbody'))
     return headers, data
 
-def twse_equity_distribution(response):
+def tdcc_equity_distribution(response):
     table = BeautifulSoup(response).findAll('table')[-2]
 
     def get_headers(table):

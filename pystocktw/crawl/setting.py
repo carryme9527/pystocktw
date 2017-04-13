@@ -47,12 +47,12 @@ def twse_stock_code(data):
         'data': data,
     }
 
-def twse_equity_distribution_for_cache():
+def tdcc_equity_distribution_for_cache():
     return {
         'url': 'http://www.tdcc.com.tw/smWeb/QryStock.jsp',
     }
 
-def twse_equity_distribution(sca_date, sid):
+def tdcc_equity_distribution(sca_date, sid):
     return {
         'url': 'http://www.tdcc.com.tw/smWeb/QryStock.jsp',
         'data': {

@@ -31,17 +31,17 @@ def test_twse_code():
         req_config = setting.twse_stock_code(payload)
         response = util.post(**req_config)
 
-def test_twse_equity_distribution():
-    req_config = setting.twse_equity_distribution_for_cache()
+def test_tdcc_equity_distribution():
+    req_config = setting.tdcc_equity_distribution_for_cache()
     response = util.get(**req_config)
 
-    req_config = setting.twse_equity_distribution('20160401', 2330)
+    req_config = setting.tdcc_equity_distribution('20160401', 2330)
     response = util.post(**req_config)
-    helper.twse_equity_distribution(response)
+    helper.tdcc_equity_distribution(response)
 
-    req_config = setting.twse_equity_distribution('20170331', 2330)
+    req_config = setting.tdcc_equity_distribution('20170331', 2330)
     response = util.post(**req_config)
-    helper.twse_equity_distribution(response)
+    helper.tdcc_equity_distribution(response)
 
 # csv
 def test_twse_warrant_info():
