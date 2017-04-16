@@ -112,3 +112,15 @@ def twse_warrant_listed_institution(qdate, select2):
             'sorting': 'by_issue',
         },
     }
+
+def tpex_warrant_counter_institution(se, date):
+    return {
+        'url': 'http://www.tpex.org.tw/web/stock/3insti/daily_trade/3itrade_hedge_download.php?l=zh-tw&se=EW&t=D&d=106/04/14&s=0,asc',
+        'data': {
+            'l': 'zh-tw',
+            'se': se, # EW, BC
+            't': 'D',
+            'd': date, # 103/12/01
+            's': '0,asc',
+        },
+    }

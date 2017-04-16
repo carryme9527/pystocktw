@@ -80,3 +80,12 @@ def test_twse_warrant_listed_institution():
 
         req_config = setting.twse_warrant_listed_institution('106/04/05', select2)
         response = util.post(**req_config)
+
+# csv
+def test_tpex_warrant_counter_institution():
+    for se in ['EW', 'BC']:
+        req_config = setting.tpex_warrant_counter_institution(se, '103/12/01')
+        response = util.post(**req_config)
+
+        req_config = setting.tpex_warrant_counter_institution(se, '106/04/05')
+        response = util.post(**req_config)
