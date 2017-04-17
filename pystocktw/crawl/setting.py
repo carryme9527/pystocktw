@@ -114,13 +114,27 @@ def twse_warrant_listed_institution(qdate, select2):
     }
 
 def tpex_warrant_counter_institution(se, date):
+    if date < '103/12/01':
+        return tpex_warrant_counter_institution_103(se, date)
     return {
-        'url': 'http://www.tpex.org.tw/web/stock/3insti/daily_trade/3itrade_hedge_download.php?l=zh-tw&se=EW&t=D&d=106/04/14&s=0,asc',
-        'data': {
+        'url': 'http://www.tpex.org.tw/web/stock/3insti/daily_trade/3itrade_hedge_download.php',
+        'params': {
             'l': 'zh-tw',
             'se': se, # EW, BC
             't': 'D',
             'd': date, # 103/12/01
+            's': '0,asc',
+        },
+    }
+
+def tpex_warrant_counter_institution_103(se, date):
+    return {
+        'url': 'http://www.tpex.org.tw/web/stock/3insti/daily_trade/3itrade_download.php',
+        'params': {
+            'l': 'zh-tw',
+            'se': se, # EW, BC
+            't': 'D',
+            'd': date, # 96/04/23
             's': '0,asc',
         },
     }
