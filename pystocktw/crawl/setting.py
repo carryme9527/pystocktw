@@ -1,5 +1,7 @@
 # -*- coding: UTF-8 -*-
 
+import datetime
+
 def stockdog_equity_distribution_atype(sdssessid, chrome_version):
     return {
         'url': 'https://www.stockdog.com.tw/stockdog/index.php',
@@ -52,7 +54,8 @@ def tdcc_equity_distribution_for_cache():
         'url': 'http://www.tdcc.com.tw/smWeb/QryStock.jsp',
     }
 
-def tdcc_equity_distribution(sca_date, sid):
+def tdcc_equity_distribution(date, sid):
+    sca_date = date.strftime('%Y%m%d')
     return {
         'url': 'http://www.tdcc.com.tw/smWeb/QryStock.jsp',
         'data': {
@@ -81,7 +84,9 @@ def twse_warrant_info(data):
         'data': data,
     }
 
-def twse_warrant_info_expired_hidden_inputs(r, sd, ed):
+def twse_warrant_info_expired_hidden_inputs(r, sdate, edate):
+    sd = '%d%02d' % (sdate.year-1911, sdate.month)
+    ed = '%d%02d' % (edate.year-1911, edate.month)
     return {
         'url': 'http://mops.twse.com.tw/mops/web/ajax_t90sb01',
         'data': {
@@ -102,7 +107,8 @@ def twse_warrant_cancel():
         'encoding': 'UTF-8',
     }
 
-def twse_warrant_listed_institution(qdate, select2):
+def twse_warrant_listed_institution(date, select2):
+    qdate = '%d/%02d/%02d' % (date.year-1911, date.month, date.day)
     return {
         'url': 'http://www.twse.com.tw/ch/trading/fund/T86/T86.php',
         'data': {
@@ -114,8 +120,9 @@ def twse_warrant_listed_institution(qdate, select2):
     }
 
 def tpex_warrant_counter_institution(se, date):
-    if date < '103/12/01':
+    if date < datetime.date(2014, 12, 1):
         return tpex_warrant_counter_institution_103(se, date)
+    date = '%d/%02d/%02d' % (date.year-1911, date.month, date.day)
     return {
         'url': 'http://www.tpex.org.tw/web/stock/3insti/daily_trade/3itrade_hedge_download.php',
         'params': {
@@ -128,6 +135,7 @@ def tpex_warrant_counter_institution(se, date):
     }
 
 def tpex_warrant_counter_institution_103(se, date):
+    date = '%d/%02d/%02d' % (date.year-1911, date.month, date.day)
     return {
         'url': 'http://www.tpex.org.tw/web/stock/3insti/daily_trade/3itrade_download.php',
         'params': {
@@ -139,14 +147,14 @@ def tpex_warrant_counter_institution_103(se, date):
         },
     }
 
-def taifex_option_daily(commodity, year, month, day):
+def taifex_option_daily(commodity, date):
     return {
         'url': 'http://www.taifex.com.tw/chinese/3/3_2_2.asp',
         'data': {
             'commodity_id': commodity,
-            'syear': year,
-            'smonth': month,
-            'sday': day,
+            'syear': date.year,
+            'smonth': date.month,
+            'sday': date.day,
         },
         'encoding': 'utf8',
     }

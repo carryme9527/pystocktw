@@ -4,6 +4,7 @@ from nose.tools import *
 from sessionid import stockdog_session_id, stockdog_chrome_version
 from pystocktw.crawl import util, setting
 from pystocktw.parse import helper
+import datetime
 
 def setup():
     print "SETUP!"
@@ -35,18 +36,20 @@ def test_twse_code():
         req_config = setting.twse_stock_code(payload)
         response = util.post(**req_config)
 
+# date
 def test_tdcc_equity_distribution():
     print 'tdcc_equity_distribution'
     req_config = setting.tdcc_equity_distribution_for_cache()
     response = util.get(**req_config)
 
-    for date in ['20160411', '20170331']:
+    for date in [datetime.date(2016, 4, 11), datetime.date(2017, 3, 31)]:
         req_config = setting.tdcc_equity_distribution(date, 2330)
         response = util.post(**req_config)
         headers, data = helper.tdcc_equity_distribution(response)
         for d in data:
             assert len(headers) == len(d)
 
+# date
 # csv
 def test_twse_warrant_info():
     print 'twse_warrant_info'
@@ -59,21 +62,14 @@ def test_twse_warrant_info():
         response = util.post(**req_config)
 
 
-    for date in ['8903', '10604']:
-        req_config = setting.twse_warrant_info_expired_hidden_inputs(1, date, date)
-        response = util.post(**req_config)
-        payload = helper.twse_warrant_info_hidden_inputs(response)
+    for date in [datetime.date(1990, 3, 1), datetime.date(2017, 4, 1)]:
+        for r in [1, 2]:
+            req_config = setting.twse_warrant_info_expired_hidden_inputs(1, date, date)
+            response = util.post(**req_config)
+            payload = helper.twse_warrant_info_hidden_inputs(response)
 
-        req_config = setting.twse_warrant_info(payload)
-        response = util.post(**req_config)
-
-    for date in ['9301', '10604']:
-        req_config = setting.twse_warrant_info_expired_hidden_inputs(2, '9301', '9301')
-        response = util.post(**req_config)
-        payload = helper.twse_warrant_info_hidden_inputs(response)
-
-        req_config = setting.twse_warrant_info(payload)
-        response = util.post(**req_config)
+            req_config = setting.twse_warrant_info(payload)
+            response = util.post(**req_config)
 
 def test_twse_warrant_cancel():
     print 'twse_warrant_cancel'
@@ -83,47 +79,51 @@ def test_twse_warrant_cancel():
     for d in data:
         assert len(headers) == len(d)
 
+# date
 # csv
 def test_twse_warrant_listed_institution():
     print 'twse_warrant_listed_institution'
     for select2 in ['0999','0999P', '0999C', '0999B', '0999X', '0999Y']:
-        for date in ['101/05/02', '106/04/05']:
+        for date in [datetime.date(2012, 5, 2), datetime.date(2017, 4, 5)]:
             req_config = setting.twse_warrant_listed_institution(date, select2)
             response = util.post(**req_config)
 
+# date
 # csv
 def test_tpex_warrant_counter_institution():
     print 'tpex_warrant_counter_institution'
     for se in ['EW', 'BC']:
-        for date in ['96/04/23', '103/11/31', '103/12/01', '106/04/05']:
+        for date in [datetime.date(2007, 4, 23), datetime.date(2014, 11, 30),
+                     datetime.date(2014, 12, 1), datetime.date(2017, 4, 5)]:
             req_config = setting.tpex_warrant_counter_institution(se, date)
             response = util.get(**req_config)
 
+# date
 def test_taifex_option_daily():
     print 'taifex_option_daily'
-    req_config = setting.taifex_option_daily('TXO', 2001, 12, 24)
+    req_config = setting.taifex_option_daily('TXO', datetime.date(2001, 12, 24))
     response = util.post(**req_config)
     helper.taifex_option_daily(response)
 
-    year, month, day = (2005, 3, 28)
+    date = datetime.date(2005, 3, 28)
     for comm in ['TEO', 'TFO']:
-        req_config = setting.taifex_option_daily(comm, year, month, day)
+        req_config = setting.taifex_option_daily(comm, date)
         response = util.post(**req_config)
         headers, data = helper.taifex_option_daily(response)
         for d in data:
             assert len(headers) == len(d)
 
-    year, month, day = (2007, 10, 8)
+    date = datetime.date(2007, 10, 8)
     for comm in ['GTO', 'XIO']:
-        req_config = setting.taifex_option_daily(comm, year, month, day)
+        req_config = setting.taifex_option_daily(comm, date)
         response = util.post(**req_config)
         headers, data = helper.taifex_option_daily(response)
         for d in data:
             assert len(headers) == len(d)
 
-    year, month, day = (2017, 4, 21)
+    date = datetime.date(2017, 4, 21)
     for comm in ['TXO', 'TEO', 'TFO', 'GTO', 'XIO']:
-        req_config = setting.taifex_option_daily(comm, year, month, day)
+        req_config = setting.taifex_option_daily(comm, date)
         response = util.post(**req_config)
         headers, data = helper.taifex_option_daily(response)
         for d in data:
