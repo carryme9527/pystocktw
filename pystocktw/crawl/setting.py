@@ -138,3 +138,15 @@ def tpex_warrant_counter_institution_103(se, date):
             's': '0,asc',
         },
     }
+
+def taifex_option_daily(commodity, year, month, day):
+    return {
+        'url': 'http://www.taifex.com.tw/chinese/3/3_2_2.asp',
+        'data': {
+            'commodity_id': commodity,
+            'syear': year,
+            'smonth': month,
+            'sday': day,
+        },
+        'encoding': 'utf8',
+    }

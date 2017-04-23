@@ -84,4 +84,27 @@ def test_tpex_warrant_counter_institution():
     for se in ['EW', 'BC']:
         for date in ['96/04/23', '103/11/31', '103/12/01', '106/04/05']:
             req_config = setting.tpex_warrant_counter_institution(se, date)
-            response = util.post(**req_config)
+            response = util.get(**req_config)
+
+def test_taifex_option_daily():
+    req_config = setting.taifex_option_daily('TXO', 2001, 12, 24)
+    response = util.post(**req_config)
+    helper.taifex_option_daily(response)
+
+    year, month, day = (2005, 3, 28)
+    for comm in ['TEO', 'TFO']:
+        req_config = setting.taifex_option_daily(comm, year, month, day)
+        response = util.post(**req_config)
+        helper.taifex_option_daily(response)
+
+    year, month, day = (2007, 10, 8)
+    for comm in ['GTO', 'XIO']:
+        req_config = setting.taifex_option_daily(comm, year, month, day)
+        response = util.post(**req_config)
+        helper.taifex_option_daily(response)
+
+    year, month, day = (2017, 4, 21)
+    for comm in ['TXO', 'TEO', 'TFO', 'GTO', 'XIO']:
+        req_config = setting.taifex_option_daily(comm, year, month, day)
+        response = util.post(**req_config)
+        helper.taifex_option_daily(response)

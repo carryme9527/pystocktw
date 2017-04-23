@@ -22,7 +22,9 @@ def wrap_request(func, url, encoding, headers, **args):
     return req.text.encode('utf8')
 
 def get(url, encoding='big5', headers={}, **args):
+    assert 'data' not in args.keys()
     return wrap_request(requests.get, url, encoding=encoding, headers=headers, **args)
 
 def post(url, encoding='big5', headers={}, **args):
+    assert 'params' not in args.keys()
     return wrap_request(requests.post, url, encoding=encoding, headers=headers, **args)

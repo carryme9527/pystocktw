@@ -75,3 +75,17 @@ def twse_warrant_cancel(response):
         return data
 
     return get_headers(table), get_data(table)
+
+def taifex_option_daily(response):
+    table = BeautifulSoup(response).findAll('table', {'class': 'table_c'})[0]
+
+    def get_headers(table):
+        return [x.text for x in table.findAll('th')]
+
+    def get_data(table):
+        data = []
+        for row in table.findAll('tr')[1:-1]:
+            data.append([x.text for x in row.findAll('td')])
+        return data
+
+    return get_headers(table), get_data(table)
