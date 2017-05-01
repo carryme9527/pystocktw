@@ -23,8 +23,14 @@ def wrap_request(func, url, encoding, headers, **args):
 
 def get(url, encoding='big5', headers={}, **args):
     assert 'data' not in args.keys()
-    return wrap_request(requests.get, url, encoding=encoding, headers=headers, **args)
+    result = None
+    while not result:
+        result = wrap_request(requests.get, url, encoding=encoding, headers=headers, **args)
+    return result
 
 def post(url, encoding='big5', headers={}, **args):
     assert 'params' not in args.keys()
-    return wrap_request(requests.post, url, encoding=encoding, headers=headers, **args)
+    result = None
+    while not result:
+        result = wrap_request(requests.post, url, encoding=encoding, headers=headers, **args)
+    return result
